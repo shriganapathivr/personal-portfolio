@@ -3,338 +3,280 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shri Ganapathi VR — CSE Student | Web Development & Java</title>
-  <meta name="description" content="Portfolio of Shri Ganapathi VR — Computer Science & Engineering student specializing in Web Development and Java, based in Greater Madurai, Tamil Nadu, India." />
-  <meta name="author" content="Shri Ganapathi VR" />
+  <title>Shri Ganapathi V.R — Full Stack Web Developer</title>
+  <meta name="description" content="Shri Ganapathi V.R — Full Stack Web Developer specializing in React.js, Node.js and MongoDB. Freelance web developer based in Madurai, India." />
+  <meta name="author" content="Shri Ganapathi V.R" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Shri Ganapathi VR — Web Development & Java" />
-  <meta property="og:description" content="CSE student (2024–2028) seeking a summer internship in Web Development. 200+ DSA problems solved, award-winning hackathon teams." />
+  <meta property="og:title" content="Shri Ganapathi V.R — Full Stack Web Developer" />
+  <meta property="og:description" content="Full stack developer & Upwork freelancer building clean, responsive, modern web apps with React, Node and MongoDB." />
   <meta property="og:type" content="website" />
 
-  <!-- Fonts: Fraunces (display serif) + Space Grotesk (body) -->
+  <!-- Fonts: Space Grotesk (display) + Outfit (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..700&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='serif'>S</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='none' stroke='%2300d4ff' stroke-width='8'/><circle cx='50' cy='50' r='20' fill='%237b2fff'/></svg>" />
+
+  <!-- Three.js via ES module importmap (CDN, no build step) -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+      }
+    }
+  </script>
 </head>
 <body>
-  <!-- Atmospheric layers -->
-  <div class="grain" aria-hidden="true"></div>
-  <div class="mesh" aria-hidden="true"></div>
+  <!-- Cursor glow + WebGL galaxy background -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <canvas id="galaxy" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
 
-  <!-- Page-load progress / reveal cover -->
+  <!-- Page-load cover -->
   <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__ring"></div>
     <span class="loader__name">SG·VR</span>
   </div>
 
-  <!-- Navigation -->
+  <!-- ============ NAV ============ -->
   <header class="nav" id="nav">
-    <a href="#hero" class="nav__brand" aria-label="Home">
-      <span>Shri Ganapathi</span><em>VR</em>
-    </a>
+    <a href="#hero" class="nav__brand">Shri<span>.</span>VR</a>
     <nav class="nav__links" aria-label="Primary">
+      <a href="#hero">Home</a>
       <a href="#about">About</a>
-      <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
-      <a href="#achievements">Achievements</a>
-      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a href="#contact" class="nav__cta">Get in touch</a>
+    <a href="https://www.upwork.com/services/product/development-it-i-will-build-a-responsive-business-landing-page-2064219438312497647" target="_blank" rel="noopener noreferrer" class="nav__cta">Hire Me</a>
     <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span>
     </button>
   </header>
 
-  <!-- Mobile menu -->
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a href="#hero">Home</a>
     <a href="#about">About</a>
-    <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
-    <a href="#achievements">Achievements</a>
-    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
     <a href="#contact">Contact</a>
   </div>
 
   <main>
     <!-- ============ HERO ============ -->
     <section class="hero" id="hero">
-      <div class="hero__meta reveal" data-reveal>
-        <span class="dot"></span> Available for Summer 2026 internships
-      </div>
-
-      <h1 class="hero__title">
-        <span class="line" data-reveal-line>Building for</span>
-        <span class="line" data-reveal-line>the <em>web</em>, one</span>
-        <span class="line" data-reveal-line>problem at a time.</span>
-      </h1>
-
-      <div class="hero__bottom">
-        <p class="hero__lede reveal" data-reveal>
-          I'm <strong>Shri Ganapathi VR</strong> — a Computer Science &amp; Engineering student
-          working at the intersection of front-end web development and Java, with a
-          foundation built on 200+ solved algorithm problems.
+      <div class="hero__inner">
+        <p class="hero__eyebrow reveal" data-reveal>
+          <span class="dot"></span> Full Stack Web Developer · Freelancer
         </p>
-        <div class="hero__actions reveal" data-reveal>
-          <a href="#projects" class="btn btn--solid" data-magnetic>
-            View work <span aria-hidden="true">→</span>
+        <h1 class="hero__title">
+          <span class="reveal" data-reveal>Shri Ganapathi</span>
+          <span class="reveal grad" data-reveal data-delay="1">V.R</span>
+        </h1>
+        <p class="hero__sub reveal" data-reveal data-delay="2">
+          I build clean, responsive, modern web applications with
+          <strong>React.js</strong>, <strong>Node.js</strong> &amp; <strong>MongoDB</strong>.
+        </p>
+        <div class="hero__actions reveal" data-reveal data-delay="3">
+          <a href="#projects" class="btn btn--primary" data-magnetic>
+            View My Work <span aria-hidden="true">→</span>
           </a>
-          <a href="#contact" class="btn btn--ghost" data-magnetic>Contact</a>
+          <a href="https://www.upwork.com/services/product/development-it-i-will-build-a-responsive-business-landing-page-2064219438312497647" target="_blank" rel="noopener noreferrer" class="btn btn--neon" data-magnetic>
+            Hire Me on Upwork <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </div>
-
-      <div class="hero__ticker reveal" data-reveal aria-hidden="true">
-        <div class="ticker__track">
-          <span>HTML5</span><span>•</span><span>CSS3</span><span>•</span><span>JavaScript</span><span>•</span>
-          <span>Java</span><span>•</span><span>DSA</span><span>•</span><span>Responsive Design</span><span>•</span>
-          <span>Git</span><span>•</span><span>Cloud Computing</span><span>•</span>
-          <span>HTML5</span><span>•</span><span>CSS3</span><span>•</span><span>JavaScript</span><span>•</span>
-          <span>Java</span><span>•</span><span>DSA</span><span>•</span><span>Responsive Design</span><span>•</span>
-          <span>Git</span><span>•</span><span>Cloud Computing</span><span>•</span>
-        </div>
-      </div>
+      <a href="#about" class="hero__scroll reveal" data-reveal data-delay="4" aria-label="Scroll down">
+        <span></span> Scroll
+      </a>
     </section>
 
     <!-- ============ ABOUT ============ -->
     <section class="section about" id="about">
-      <p class="section__index reveal" data-reveal>01 — About</p>
+      <p class="section__index reveal" data-reveal>01 / About</p>
       <div class="about__grid">
-        <h2 class="about__lead reveal" data-reveal>
-          A CSE student <em>(2024–2028, CGPA 8.64)</em> seeking a summer internship in web development.
-        </h2>
-        <div class="about__body">
-          <p class="reveal" data-reveal>
-            I'm skilled in front-end web technologies — HTML, CSS, and JavaScript — and in Java,
-            backed by a strong DSA foundation with <strong>200+ LeetCode problems solved</strong>.
+        <div>
+          <h2 class="section__title reveal" data-reveal>
+            Crafting the web,<br /><span class="grad">one project at a time.</span>
+          </h2>
+          <p class="about__bio reveal" data-reveal>
+            I am a 3rd year Computer Science Engineering student at SRM Madurai College for
+            Engineering and Technology, Madurai. I am passionate about building clean,
+            responsive, and modern web applications. I specialize in full stack development
+            using React.js, Node.js, and MongoDB. I am also an active freelancer on Upwork,
+            helping businesses build their online presence through quality web development.
           </p>
-          <p class="reveal" data-reveal>
-            I've spent my time building functional web apps, integrating prediction models, and
-            collaborating in award-winning hackathon teams. I'm eager to apply my problem-solving
-            skills and learn modern industry development practices.
-          </p>
-          <ul class="about__facts reveal" data-reveal>
-            <li><span>Location</span> Greater Madurai, Tamil Nadu, India</li>
-            <li><span>Focus</span> Web Development &amp; Java</li>
-            <li><span>Status</span> Open to internships</li>
-          </ul>
+          <div class="about__cta reveal" data-reveal>
+            <a href="#contact" class="btn btn--primary" data-magnetic>Let's talk <span aria-hidden="true">→</span></a>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ============ SKILLS ============ -->
-    <section class="section skills" id="skills">
-      <p class="section__index reveal" data-reveal>02 — Skills</p>
-      <h2 class="section__title reveal" data-reveal>What I work with</h2>
-
-      <div class="skills__grid">
-        <article class="skill-card reveal" data-reveal>
-          <h3>Languages</h3>
-          <ul class="tags">
-            <li>Java</li><li>JavaScript</li><li>Python</li><li>C</li>
-          </ul>
-        </article>
-        <article class="skill-card reveal" data-reveal>
-          <h3>Web Development</h3>
-          <ul class="tags">
-            <li>HTML5</li><li>CSS3</li><li>JavaScript</li>
-            <li>Responsive Web Design</li><li>DOM Manipulation</li>
-          </ul>
-        </article>
-        <article class="skill-card reveal" data-reveal>
-          <h3>Concepts</h3>
-          <ul class="tags">
-            <li>Data Structures &amp; Algorithms</li><li>OOP</li>
-            <li>Problem Solving</li><li>Cloud Computing</li>
-          </ul>
-        </article>
-        <article class="skill-card reveal" data-reveal>
-          <h3>Tools &amp; Platforms</h3>
-          <ul class="tags">
-            <li>Git</li><li>GitHub</li><li>VS Code</li><li>AI-assisted development</li>
-          </ul>
-        </article>
+        <ul class="about__cards">
+          <li class="glass-card reveal" data-reveal>
+            <span class="about__label">Education</span>
+            <h3>B.E Computer Science &amp; Engineering</h3>
+            <p>SRM Madurai College for Engineering and Technology</p>
+            <p class="about__muted">2024 — 2028 · 3rd Year</p>
+          </li>
+          <li class="glass-card reveal" data-reveal>
+            <span class="about__label">Location</span>
+            <h3>Madurai, Tamil Nadu</h3>
+            <p class="about__muted">India</p>
+          </li>
+          <li class="glass-card reveal" data-reveal>
+            <span class="about__label">Focus</span>
+            <h3>Full Stack &amp; Freelancing</h3>
+            <p class="about__muted">React · Node · MongoDB</p>
+          </li>
+        </ul>
       </div>
     </section>
 
     <!-- ============ PROJECTS ============ -->
     <section class="section projects" id="projects">
-      <p class="section__index reveal" data-reveal>03 — Projects</p>
-      <h2 class="section__title reveal" data-reveal>Selected work</h2>
+      <p class="section__index reveal" data-reveal>02 / Projects</p>
+      <h2 class="section__title reveal" data-reveal>Selected <span class="grad">Work</span></h2>
 
-      <div class="project reveal" data-reveal>
-        <div class="project__num">01</div>
-        <div class="project__main">
-          <h3 class="project__title">Typing Speed Test Web Application</h3>
-          <p class="project__stack">HTML · CSS · JavaScript</p>
-          <p class="project__desc">
-            A browser-based typing speed tester (inspired by MonkeyType) that calculates
-            words-per-minute and accuracy in real time using JavaScript and DOM manipulation.
-            Features a live countdown timer, dynamic word generation, and instant performance feedback.
-          </p>
-          <div class="project__links">
-            <a href="https://verdant-mooncake-76eb80.netlify.app/" target="_blank" rel="noopener noreferrer" class="link-arrow">Live demo <span aria-hidden="true">↗</span></a>
-            <a href="https://github.com/shriganapathivr/TypeWriting" target="_blank" rel="noopener noreferrer" class="link-arrow">Source code <span aria-hidden="true">↗</span></a>
+      <div class="projects__grid">
+        <!-- Project 1 -->
+        <article class="pcard reveal" data-tilt data-reveal>
+          <div class="pcard__glow" aria-hidden="true"></div>
+          <div class="pcard__inner">
+            <div class="pcard__top">
+              <span class="pcard__num">01</span>
+              <span class="pcard__badge">Full Stack</span>
+            </div>
+            <h3 class="pcard__title">Jira Clone</h3>
+            <p class="pcard__tag">Project Management Web App</p>
+            <p class="pcard__desc">
+              A fully functional Jira-style project management app with boards, tasks, and
+              user authentication. Built independently to demonstrate full stack development skills.
+            </p>
+            <ul class="pcard__tech">
+              <li>React.js</li><li>Node.js</li><li>MongoDB</li><li>REST API</li>
+            </ul>
+            <div class="pcard__links">
+              <a href="https://zira-2h3w.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--primary">Live <span aria-hidden="true">↗</span></a>
+              <a href="https://github.com/shriganapathivr/JiraClone" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--ghost">GitHub</a>
+            </div>
           </div>
-        </div>
-      </div>
+        </article>
 
-      <div class="project reveal" data-reveal>
-        <div class="project__num">02</div>
-        <div class="project__main">
-          <h3 class="project__title">Personal Portfolio Website</h3>
-          <p class="project__stack">HTML · CSS · JavaScript</p>
-          <p class="project__desc">
-            A responsive personal portfolio built with CSS Flexbox/Grid and JavaScript
-            interactivity, designed mobile-first to work seamlessly across desktop and mobile.
-            <em>(This site itself.)</em>
-          </p>
-          <div class="project__links">
-            <a href="https://github.com/shriganapathivr" target="_blank" rel="noopener noreferrer" class="link-arrow">GitHub profile <span aria-hidden="true">↗</span></a>
+        <!-- Project 2 -->
+        <article class="pcard reveal" data-tilt data-reveal>
+          <div class="pcard__glow" aria-hidden="true"></div>
+          <div class="pcard__inner">
+            <div class="pcard__top">
+              <span class="pcard__num">02</span>
+              <span class="pcard__badge">Frontend</span>
+            </div>
+            <h3 class="pcard__title">Personal Portfolio</h3>
+            <p class="pcard__tag">Portfolio Website</p>
+            <p class="pcard__desc">
+              Personal portfolio showcasing projects, skills and contact information with a
+              clean UI design.
+            </p>
+            <ul class="pcard__tech">
+              <li>HTML</li><li>CSS</li><li>JavaScript</li>
+            </ul>
+            <div class="pcard__links">
+              <a href="https://shriganapathiportfolio.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--primary">Live <span aria-hidden="true">↗</span></a>
+              <a href="https://github.com/shriganapathivr/personal-portfolio" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--ghost">GitHub</a>
+            </div>
           </div>
-        </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="pcard reveal" data-tilt data-reveal>
+          <div class="pcard__glow" aria-hidden="true"></div>
+          <div class="pcard__inner">
+            <div class="pcard__top">
+              <span class="pcard__num">03</span>
+              <span class="pcard__badge">Landing Page</span>
+            </div>
+            <h3 class="pcard__title">Nuts Shop Landing</h3>
+            <p class="pcard__tag">Business Landing Page</p>
+            <p class="pcard__desc">
+              Responsive business landing page for a nuts and dry fruits retail shop with
+              product showcase and call-to-action sections.
+            </p>
+            <ul class="pcard__tech">
+              <li>HTML</li><li>CSS</li><li>JavaScript</li>
+            </ul>
+            <div class="pcard__links">
+              <a href="https://nuttslandingpage.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--primary">Live <span aria-hidden="true">↗</span></a>
+              <a href="https://github.com/shriganapathivr/NuttsShopLanding" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--ghost">GitHub</a>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <!-- ============ ACHIEVEMENTS ============ -->
-    <section class="section achievements" id="achievements">
-      <p class="section__index reveal" data-reveal>04 — Achievements</p>
-      <h2 class="section__title reveal" data-reveal>Recognition &amp; hackathons</h2>
+    <!-- ============ SKILLS ============ -->
+    <section class="section skills" id="skills">
+      <p class="section__index reveal" data-reveal>03 / Skills</p>
+      <h2 class="section__title reveal" data-reveal>Tech I <span class="grad">work with</span></h2>
+      <p class="skills__hint reveal" data-reveal>Drag the globe to spin it.</p>
 
-      <div class="ach-grid">
-        <article class="ach-card ach-card--feature reveal" data-reveal>
-          <span class="ach-card__badge">2nd Prize</span>
-          <h3>Model-Making Event</h3>
-          <p class="ach-card__where">SRM MCET · AI &amp; Data Science Dept.</p>
-          <p>
-            Built a web-based mental health screening tool that collects inputs like age and work
-            stress, then uses a Python prediction model to flag whether the user should consult a
-            mental health professional.
-          </p>
-        </article>
-
-        <article class="ach-card reveal" data-reveal>
-          <span class="ach-card__badge ach-card__badge--alt">Hackathon</span>
-          <h3>Participant &amp; Presenter</h3>
-          <p>
-            Co-led a team designing an AI-Powered Post-Discharge Patient Care Assistant to reduce
-            hospital readmissions via medication tracking and automated alerts — and presented the
-            working prototype to reviewers.
-          </p>
-        </article>
-
-        <article class="ach-card reveal" data-reveal>
-          <span class="ach-card__badge ach-card__badge--alt">LeetCode</span>
-          <h3>Consistent Problem Solver</h3>
-          <div class="ach-stats">
-            <div><strong>160</strong><span>day streak</span></div>
-            <div><strong>307</strong><span>active days</span></div>
-            <div><strong>460+</strong><span>submissions</span></div>
-            <div><strong>200+</strong><span>DSA in Java</span></div>
-          </div>
-          <a href="https://leetcode.com/u/Jx5Eh3Fpwx" target="_blank" rel="noopener noreferrer" class="link-arrow">View profile <span aria-hidden="true">↗</span></a>
-        </article>
-      </div>
-    </section>
-
-    <!-- ============ EDUCATION & CERTIFICATIONS ============ -->
-    <section class="section education" id="education">
-      <p class="section__index reveal" data-reveal>05 — Education &amp; Certifications</p>
-      <h2 class="section__title reveal" data-reveal>Background</h2>
-
-      <div class="edu-grid">
-        <div class="edu-col">
-          <h3 class="edu-col__head reveal" data-reveal>Education</h3>
-          <div class="timeline">
-            <article class="timeline__item reveal" data-reveal>
-              <span class="timeline__year">2024 — 2028</span>
-              <h4>Bachelor of Engineering (B.E.), Computer Science &amp; Engineering</h4>
-              <p>SRM Madurai College for Engineering and Technology (SRM MCET), Madurai</p>
-              <p class="timeline__highlight">CGPA 8.64 / 10</p>
-            </article>
-          </div>
-        </div>
-
-        <div class="edu-col">
-          <h3 class="edu-col__head reveal" data-reveal>Certifications</h3>
-          <div class="timeline">
-            <article class="timeline__item reveal" data-reveal>
-              <span class="timeline__year">Jan — Apr 2026</span>
-              <h4>NPTEL Online Certification — Cloud Computing <em>(Elite)</em></h4>
-              <p>IIT Kharagpur · 12-week course</p>
-              <p class="timeline__highlight">Consolidated score 73%</p>
-            </article>
-            <article class="timeline__item reveal" data-reveal>
-              <span class="timeline__year">2022</span>
-              <h4>English Typewriting — Senior (Higher) Grade</h4>
-              <p>Government Technical Examination</p>
-            </article>
-          </div>
-        </div>
+      <div class="skills__stage reveal" data-reveal>
+        <canvas id="skillsCanvas"></canvas>
+        <!-- Fallback list (also aids accessibility / no-WebGL) -->
+        <ul class="skills__list">
+          <li>HTML</li><li>CSS</li><li>JavaScript</li><li>React.js</li><li>Node.js</li>
+          <li>MongoDB</li><li>REST API</li><li>Git &amp; GitHub</li><li>Responsive Design</li><li>Three.js</li>
+        </ul>
       </div>
     </section>
 
     <!-- ============ CONTACT ============ -->
     <section class="section contact" id="contact">
-      <p class="section__index reveal" data-reveal>06 — Contact</p>
+      <p class="section__index reveal" data-reveal>04 / Contact</p>
       <h2 class="contact__title reveal" data-reveal>
-        Let's build<br /><em>something.</em>
+        Let's build something<br /><span class="grad">great together.</span>
       </h2>
       <p class="contact__sub reveal" data-reveal>
-        Open to summer internship opportunities in web development. The fastest way to reach me is below.
+        Available for freelance projects and collaborations. Reach out on any channel below.
       </p>
 
-      <div class="contact__layout">
-        <div class="contact__direct reveal" data-reveal>
-          <a href="mailto:shriganapathi.vr@gmail.com" class="contact__line">
-            <span>Email</span> shriganapathi.vr@gmail.com
-          </a>
-          <a href="tel:+919655516887" class="contact__line">
-            <span>Phone</span> +91 96555 16887
-          </a>
-          <div class="contact__socials">
-            <a href="https://github.com/shriganapathivr" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-            <a href="https://www.linkedin.com/in/shriganapathivr" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-            <a href="https://leetcode.com/u/Jx5Eh3Fpwx" target="_blank" rel="noopener noreferrer">LeetCode ↗</a>
-          </div>
-        </div>
-
-        <!-- Contact form: builds a mailto link from the fields -->
-        <form class="contact__form reveal" data-reveal id="contactForm">
-          <div class="field">
-            <label for="cf-name">Name</label>
-            <input type="text" id="cf-name" name="name" required autocomplete="name" />
-          </div>
-          <div class="field">
-            <label for="cf-email">Your email</label>
-            <input type="email" id="cf-email" name="email" required autocomplete="email" />
-          </div>
-          <div class="field">
-            <label for="cf-message">Message</label>
-            <textarea id="cf-message" name="message" rows="4" required></textarea>
-          </div>
-          <button type="submit" class="btn btn--solid" data-magnetic>
-            Send message <span aria-hidden="true">→</span>
-          </button>
-          <p class="contact__note">This opens your email client with the message pre-filled.</p>
-        </form>
+      <div class="contact__grid">
+        <a href="mailto:shriganapathi.vr@gmail.com" class="contact__item glass-card reveal" data-reveal data-magnetic>
+          <span class="contact__label">Email</span>
+          <span class="contact__value">shriganapathi.vr@gmail.com</span>
+          <span class="contact__arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="https://www.linkedin.com/in/shriganapathivr/" target="_blank" rel="noopener noreferrer" class="contact__item glass-card reveal" data-reveal data-magnetic>
+          <span class="contact__label">LinkedIn</span>
+          <span class="contact__value">/in/shriganapathivr</span>
+          <span class="contact__arrow" aria-hidden="true">↗</span>
+        </a>
+        <a href="https://github.com/shriganapathivr" target="_blank" rel="noopener noreferrer" class="contact__item glass-card reveal" data-reveal data-magnetic>
+          <span class="contact__label">GitHub</span>
+          <span class="contact__value">@shriganapathivr</span>
+          <span class="contact__arrow" aria-hidden="true">↗</span>
+        </a>
+        <a href="https://www.upwork.com/services/product/development-it-i-will-build-a-responsive-business-landing-page-2064219438312497647" target="_blank" rel="noopener noreferrer" class="contact__item glass-card contact__item--upwork reveal" data-reveal data-magnetic>
+          <span class="contact__label">Upwork</span>
+          <span class="contact__value">Hire me for your project</span>
+          <span class="contact__arrow" aria-hidden="true">↗</span>
+        </a>
       </div>
     </section>
   </main>
 
   <!-- ============ FOOTER ============ -->
   <footer class="footer">
-    <div class="footer__big" aria-hidden="true">SG·VR</div>
-    <div class="footer__row">
-      <p>© <span id="year"></span> Shri Ganapathi VR</p>
-      <p>Greater Madurai, Tamil Nadu, India</p>
-      <p>Built with HTML, CSS &amp; JavaScript</p>
-      <button class="footer__top" id="toTop">Back to top ↑</button>
+    <p class="footer__name grad">Shri Ganapathi V.R</p>
+    <p>© <span id="year"></span> · Full Stack Web Developer · Madurai, India</p>
+    <div class="footer__links">
+      <a href="https://github.com/shriganapathivr" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/shriganapathivr/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:shriganapathi.vr@gmail.com">Email</a>
     </div>
+    <button class="footer__top" id="toTop">Back to top ↑</button>
   </footer>
 
-  <script src="script.js"></script>
+  <script type="module" src="main.js"></script>
 </body>
 </html>

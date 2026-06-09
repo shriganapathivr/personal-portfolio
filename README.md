@@ -1,78 +1,69 @@
-# Shri Ganapathi VR — Portfolio
+# Shri Ganapathi V.R — Full Stack Developer Portfolio
 
-A single-page personal portfolio for **Shri Ganapathi VR**, a Computer Science &
-Engineering student focused on Web Development and Java.
+A visually rich, single-page developer portfolio built with **Three.js** and a
+dark neon aesthetic. Zero build step — plain HTML/CSS + ES-module JavaScript that
+pulls Three.js from a CDN, so it deploys to Vercel/Netlify instantly.
 
-Built as a **zero-dependency static site** (plain HTML, CSS, and JavaScript) — no
-build step, no framework, deploys to Vercel in seconds.
+## Highlights
 
-## Design
+- **Hero** — a real WebGL **particle galaxy** (spiral, ~22k points, additive glow)
+  with a floating star field and mouse-parallax camera, name/title centered, plus
+  "View My Work" and "Hire Me on Upwork" buttons.
+- **Skills** — a **draggable 3D sphere** of neon skill badges (Three.js sprites on a
+  fibonacci sphere) that auto-rotates and responds to drag/touch.
+- **Projects** — glassmorphic cards with **3D pointer-tilt** and a glow that tracks
+  the cursor; live + GitHub buttons and tech-stack tags.
+- **Cursor glow** that trails the mouse, **blur navigation** bar, scroll-reveal
+  animations, scroll-spy nav, magnetic buttons, and a full-screen mobile menu.
+- Dark theme `#0a0a0a` with neon **blue `#00d4ff`** + **purple `#7b2fff`** accents.
+- Fully responsive (mobile-first) and respects `prefers-reduced-motion`. Gracefully
+  falls back to a static skills list if WebGL is unavailable.
 
-- **Aesthetic:** refined dark editorial.
-- **Type pairing:** [Fraunces](https://fonts.google.com/specimen/Fraunces) (optical
-  display serif) + [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) (body).
-- **Atmosphere:** animated film grain, slow drifting mesh gradient, warm amber accent
-  on a near-black canvas.
-- **Motion:** staggered page-load reveal, scroll-triggered reveals
-  (`IntersectionObserver`), scroll-spy nav, magnetic buttons — all respect
-  `prefers-reduced-motion`.
-- **Responsive:** mobile-first, with a full-screen mobile menu.
+## Type pairing
 
-## Sections
-
-Hero · About · Skills · Projects · Achievements · Education & Certifications · Contact · Footer
+[Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) (display) +
+[Outfit](https://fonts.google.com/specimen/Outfit) (body).
 
 ## Project structure
 
 ```
 .
-├── index.html      # markup + content
-├── styles.css      # all styling + animations
-├── script.js       # interactions (nav, reveals, form, etc.)
-├── vercel.json      # static deploy config
+├── index.html      # markup, content, Three.js importmap
+├── styles.css      # dark/neon theme + all styling & animations
+├── main.js         # Three.js scenes (galaxy, skills sphere) + UI interactions
+├── serve.js        # tiny zero-dependency local preview server (dev only)
+├── vercel.json     # static deploy config + security headers
 └── README.md
 ```
 
 ## Run locally
 
-It's a static site, so just open `index.html` in a browser. For the cleanest local
-experience (correct paths, no file:// quirks), serve it:
+It's a static site, but ES modules need to be served over HTTP (not `file://`).
 
 ```bash
-# Option A — Python (no install)
-python -m http.server 5173
+# Node (uses the included tiny server — no dependencies)
+node serve.js
 # then visit http://localhost:5173
 
-# Option B — Node
+# …or any static server you like, e.g.
 npx serve .
 ```
 
-## Deploy to Vercel
+## Deploy
 
-### Option A — Vercel dashboard (no CLI)
+### Vercel
+1. Push to a GitHub repo.
+2. [vercel.com/new](https://vercel.com/new) → **Import** the repo.
+3. Framework preset: **Other**, build command empty, output directory `./`.
+4. **Deploy.** No build required.
 
-1. Push this folder to a GitHub repository.
-2. Go to [vercel.com/new](https://vercel.com/new) and **import** the repo.
-3. Framework preset: **Other**. Build command: *(leave empty)*. Output directory: `./`.
-4. Click **Deploy**. Done.
-
-### Option B — Vercel CLI
-
-```bash
-npm i -g vercel
-vercel          # preview deploy
-vercel --prod   # production deploy
-```
-
-No build is required — Vercel serves the static files directly.
+### Netlify
+Drag-and-drop the folder at [app.netlify.com/drop](https://app.netlify.com/drop),
+or connect the repo with build command empty and publish directory `./`.
 
 ## Contact
 
-The contact form composes a pre-filled email via `mailto:` (opens the visitor's mail
-client). Direct email and phone links are also provided.
-
 - Email: shriganapathi.vr@gmail.com
-- Phone: +91 96555 16887
+- LinkedIn: https://www.linkedin.com/in/shriganapathivr/
 - GitHub: https://github.com/shriganapathivr
-- LinkedIn: https://www.linkedin.com/in/shriganapathivr
-- LeetCode: https://leetcode.com/u/Jx5Eh3Fpwx
+- Upwork: https://www.upwork.com/services/product/development-it-i-will-build-a-responsive-business-landing-page-2064219438312497647
