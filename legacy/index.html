@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shri Ganapathi V.R — Full Stack Web Developer</title>
+  <meta name="description" content="Shri Ganapathi V.R — Full Stack Web Developer crafting premium web experiences with React.js, Node.js & MongoDB. Based in Madurai, India." />
+  <meta name="author" content="Shri Ganapathi V.R" />
+  <meta property="og:title" content="Shri Ganapathi V.R — Full Stack Web Developer" />
+  <meta property="og:description" content="Premium full stack developer & Upwork freelancer. React · Node · MongoDB · Three.js." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts: Syne (display) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%2300d4ff'/><stop offset='1' stop-color='%238b5cf6'/></linearGradient></defs><circle cx='50' cy='50' r='40' fill='none' stroke='url(%23g)' stroke-width='9'/></svg>" />
+
+  <!-- Three.js + Motion (Framer Motion family, vanilla) via ES-module importmap -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "motion": "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm"
+      }
+    }
+  </script>
+
+  <!-- Enable JS-driven hidden states only when JS runs (no-JS fallback shows content) -->
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <!-- Cinematic background layers -->
+  <canvas id="galaxy" aria-hidden="true"></canvas>
+  <div class="aurora" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <!-- Custom cursor -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- Loader -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__ring"></div>
+    <span class="loader__name">SG·VR</span>
+  </div>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="nav" id="nav" data-nav>
+    <a href="#hero" class="nav__brand">Shri<span>.</span>VR</a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="https://www.upwork.com/services/product/development-it-i-will-build-a-responsive-business-landing-page-2064219438312497647" target="_blank" rel="noopener noreferrer" class="nav__cta">Hire Me</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hero__inner">
+        <p class="hero__eyebrow" data-animate="fade-down">
+          <span class="dot"></span> Available for freelance &amp; collaborations
+        </p>
+
+        <h1 class="hero__title" data-headline aria-label="Shri Ganapathi V.R">
+          <span class="hero__line">
+            <span class="word">Shri</span>
+            <span class="word">Ganapathi</span>
+          </span>
+          <span class="hero__line">
+            <span class="word grad">V.R</span>
+          </span>
+        </h1>
+
+        <p class="hero__role" data-animate="fade-up">
+          <span class="hero__role-static">I'm a</span>
+          <span class="typed" id="typed" aria-live="polite"></span><span class="caret" aria-hidden="true">|</span>
+        </p>
+
+        <p class="hero__sub" data-animate="fade-up">
+          Crafting clean, cinematic, high-performance web applications with
+          <strong>React.js</strong>, <strong>Node.js</strong> &amp; <strong>MongoDB</strong>.
+        </p>
+
+        <div class="hero__actions" data-animate="fade-up">
+          <a href="#projects" class="btn btn--primary" data-magnetic>
+            View My Work
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="https://www.upwork.com/services/product/development-it-i-will-build-a-responsive-business-landing-page-2064219438312497647" target="_blank" rel="noopener noreferrer" class="btn btn--glass" data-magnetic>
+            Hire Me on Upwork
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <a href="#about" class="hero__scroll" data-animate="fade-up" aria-label="Scroll to about">
+        <span></span> Scroll
+      </a>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section about" id="about">
+      <p class="section__index" data-animate="fade-up">01 — About</p>
+      <div class="about__grid">
+        <div class="about__col" data-animate="fade-up">
+          <h2 class="section__title">
+            Building the web with<br /><span class="grad">precision &amp; polish.</span>
+          </h2>
+          <p class="about__bio">
+            I am a 3rd year Computer Science Engineering student at SRM Madurai College for
+            Engineering and Technology, Madurai. I am passionate about building clean,
+            responsive, and modern web applications. I specialize in full stack development
+            using React.js, Node.js, and MongoDB. I am also an active freelancer on Upwork,
+            helping businesses build their online presence through quality web development.
+          </p>
+          <a href="#contact" class="btn btn--primary" data-magnetic>
+            Let's work together
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <ul class="about__cards" data-stagger>
+          <li class="glass-card about-card" data-animate="fade-up">
+            <span class="about-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 2 3 6 3s6-2 6-3v-5"/></svg>
+            </span>
+            <div>
+              <span class="about-card__label">Education</span>
+              <h3>B.E Computer Science &amp; Engineering</h3>
+              <p>SRM Madurai College for Engineering and Technology</p>
+              <p class="muted">2024 — 2028 · 3rd Year</p>
+            </div>
+          </li>
+          <li class="glass-card about-card" data-animate="fade-up">
+            <span class="about-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <div>
+              <span class="about-card__label">Location</span>
+              <h3>Madurai, Tamil Nadu</h3>
+              <p class="muted">India · Open to remote work</p>
+            </div>
+          </li>
+          <li class="glass-card about-card" data-animate="fade-up">
+            <span class="about-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg>
+            </span>
+            <div>
+              <span class="about-card__label">Focus</span>
+              <h3>Full Stack &amp; Freelancing</h3>
+              <p class="muted">React · Node · MongoDB · REST APIs</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section projects" id="projects">
+      <p class="section__index" data-animate="fade-up">02 — Projects</p>
+      <h2 class="section__title" data-animate="fade-up">Selected <span class="grad">Work</span></h2>
+
+      <div class="projects__grid" data-stagger>
+        <!-- Project 1 -->
+        <article class="glass-card pcard" data-animate="fade-up" data-tilt>
+          <div class="pcard__glow" aria-hidden="true"></div>
+          <div class="pcard__top">
+            <span class="pcard__num">01</span>
+            <span class="pcard__badge">Full Stack</span>
+          </div>
+          <h3 class="pcard__title">Jira Clone</h3>
+          <p class="pcard__tag">Project Management Web App</p>
+          <p class="pcard__desc">
+            A fully functional Jira-style project management app with boards, tasks and user
+            authentication. Built independently to demonstrate full stack development skills.
+          </p>
+          <ul class="pcard__tech">
+            <li>React.js</li><li>Node.js</li><li>MongoDB</li><li>REST API</li>
+          </ul>
+          <div class="pcard__links">
+            <a href="https://zira-2h3w.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--primary">Live Demo
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+            <a href="https://github.com/shriganapathivr/JiraClone" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--ghost">
+              <img src="https://cdn.simpleicons.org/github/ffffff" alt="" width="15" height="15" loading="lazy" /> GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="glass-card pcard" data-animate="fade-up" data-tilt>
+          <div class="pcard__glow" aria-hidden="true"></div>
+          <div class="pcard__top">
+            <span class="pcard__num">02</span>
+            <span class="pcard__badge">Frontend</span>
+          </div>
+          <h3 class="pcard__title">Personal Portfolio</h3>
+          <p class="pcard__tag">Portfolio Website</p>
+          <p class="pcard__desc">
+            Personal portfolio showcasing projects, skills and contact information with a clean,
+            modern UI design.
+          </p>
+          <ul class="pcard__tech">
+            <li>HTML</li><li>CSS</li><li>JavaScript</li>
+          </ul>
+          <div class="pcard__links">
+            <a href="https://shriganapathiportfolio.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--primary">Live Demo
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+            <a href="https://github.com/shriganapathivr/personal-portfolio" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--ghost">
+              <img src="https://cdn.simpleicons.org/github/ffffff" alt="" width="15" height="15" loading="lazy" /> GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="glass-card pcard" data-animate="fade-up" data-tilt>
+          <div class="pcard__glow" aria-hidden="true"></div>
+          <div class="pcard__top">
+            <span class="pcard__num">03</span>
+            <span class="pcard__badge">Landing Page</span>
+          </div>
+          <h3 class="pcard__title">Nuts Shop Landing</h3>
+          <p class="pcard__tag">Business Landing Page</p>
+          <p class="pcard__desc">
+            Responsive business landing page for a nuts and dry fruits retail shop with product
+            showcase and call-to-action sections.
+          </p>
+          <ul class="pcard__tech">
+            <li>HTML</li><li>CSS</li><li>JavaScript</li>
+          </ul>
+          <div class="pcard__links">
+            <a href="https://nuttslandingpage.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--primary">Live Demo
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+            <a href="https://github.com/shriganapathivr/NuttsShopLanding" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--ghost">
+              <img src="https://cdn.simpleicons.org/github/ffffff" alt="" width="15" height="15" loading="lazy" /> GitHub
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section skills" id="skills">
+      <p class="section__index" data-animate="fade-up">03 — Skills</p>
+      <h2 class="section__title" data-animate="fade-up">Tech I <span class="grad">work with</span></h2>
+
+      <div class="skills__layout">
+        <ul class="skills__badges" data-stagger>
+          <li class="glass-card badge" data-animate="zoom"><img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript" width="26" height="26" loading="lazy" /><span>JavaScript</span></li>
+          <li class="glass-card badge" data-animate="zoom"><img src="https://cdn.simpleicons.org/react/61DAFB" alt="React.js" width="26" height="26" loading="lazy" /><span>React.js</span></li>
+          <li class="glass-card badge" data-animate="zoom"><img src="https://cdn.simpleicons.org/nodedotjs/5FA04E" alt="Node.js" width="26" height="26" loading="lazy" /><span>Node.js</span></li>
+          <li class="glass-card badge" data-animate="zoom"><img src="https://cdn.simpleicons.org/mongodb/47A248" alt="MongoDB" width="26" height="26" loading="lazy" /><span>MongoDB</span></li>
+          <li class="glass-card badge" data-animate="zoom">
+            <span class="badge__svg" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#00d4ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></span><span>REST API</span>
+          </li>
+          <li class="glass-card badge" data-animate="zoom"><img src="https://cdn.simpleicons.org/threedotjs/ffffff" alt="Three.js" width="24" height="24" loading="lazy" /><span>Three.js</span></li>
+          <li class="glass-card badge" data-animate="zoom"><img src="https://cdn.simpleicons.org/git/F05032" alt="Git" width="24" height="24" loading="lazy" /><span>Git</span></li>
+          <li class="glass-card badge" data-animate="zoom"><img src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML5" width="24" height="24" loading="lazy" /><span>HTML5</span></li>
+          <li class="glass-card badge" data-animate="zoom"><img src="https://cdn.simpleicons.org/css/663399" alt="CSS3" width="24" height="24" loading="lazy" /><span>CSS3</span></li>
+          <li class="glass-card badge" data-animate="zoom">
+            <span class="badge__svg" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#8b5cf6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M2 9h20M7 18v3M17 18v3M6 21h12"/></svg></span><span>Responsive</span>
+          </li>
+        </ul>
+
+        <div class="skills__globe" data-animate="fade-up">
+          <p class="skills__hint">Drag to spin the globe</p>
+          <div class="skills__stage">
+            <canvas id="skillsCanvas"></canvas>
+            <ul class="skills__list">
+              <li>React.js</li><li>Node.js</li><li>MongoDB</li><li>REST API</li><li>Three.js</li>
+              <li>Git</li><li>JavaScript</li><li>HTML</li><li>CSS</li><li>Responsive</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact">
+      <p class="section__index" data-animate="fade-up">04 — Contact</p>
+      <h2 class="contact__title" data-animate="fade-up">
+        Let's build something<br /><span class="grad">exceptional.</span>
+      </h2>
+      <p class="contact__sub" data-animate="fade-up">
+        Available for freelance projects and collaborations. Pick whichever channel suits you.
+      </p>
+
+      <div class="contact__grid" data-stagger>
+        <a href="mailto:shriganapathi.vr@gmail.com" class="glass-card contact__item" data-animate="fade-up">
+          <span class="contact__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+          </span>
+          <span class="contact__meta"><span class="contact__label">Email</span><span class="contact__value">shriganapathi.vr@gmail.com</span></span>
+          <span class="contact__arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="https://www.linkedin.com/in/shriganapathivr/" target="_blank" rel="noopener noreferrer" class="glass-card contact__item" data-animate="fade-up">
+          <span class="contact__icon" aria-hidden="true"><img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="" width="22" height="22" loading="lazy" /></span>
+          <span class="contact__meta"><span class="contact__label">LinkedIn</span><span class="contact__value">/in/shriganapathivr</span></span>
+          <span class="contact__arrow" aria-hidden="true">↗</span>
+        </a>
+        <a href="https://github.com/shriganapathivr" target="_blank" rel="noopener noreferrer" class="glass-card contact__item" data-animate="fade-up">
+          <span class="contact__icon" aria-hidden="true"><img src="https://cdn.simpleicons.org/github/ffffff" alt="" width="22" height="22" loading="lazy" /></span>
+          <span class="contact__meta"><span class="contact__label">GitHub</span><span class="contact__value">@shriganapathivr</span></span>
+          <span class="contact__arrow" aria-hidden="true">↗</span>
+        </a>
+        <a href="https://www.upwork.com/services/product/development-it-i-will-build-a-responsive-business-landing-page-2064219438312497647" target="_blank" rel="noopener noreferrer" class="glass-card contact__item contact__item--upwork" data-animate="fade-up">
+          <span class="contact__icon" aria-hidden="true"><img src="https://cdn.simpleicons.org/upwork/6FDA44" alt="" width="22" height="22" loading="lazy" /></span>
+          <span class="contact__meta"><span class="contact__label">Upwork</span><span class="contact__value">Hire me for your project</span></span>
+          <span class="contact__arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <p class="footer__name grad">Shri Ganapathi V.R</p>
+    <p class="muted">© <span id="year"></span> · Full Stack Web Developer · Madurai, India</p>
+    <button class="footer__top" id="toTop" aria-label="Back to top">↑ Top</button>
+  </footer>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

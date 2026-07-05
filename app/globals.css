@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   Design system — Dark #0a0a0a
+   Accents: purple #7042f8 (iris) + cyan #00d8ff (aqua)
+   Syne headings / Inter body · glassmorphism · cinematic
+   ========================================================= */
+
+:root {
+  --base: #0a0a0a;
+  --iris: #7042f8;
+  --iris-soft: #9a7bff;
+  --aqua: #00d8ff;
+  --ink: #f4f6f4;
+  --muted: #9096a3;
+  --glass: rgba(255, 255, 255, 0.045);
+  --glass-2: rgba(255, 255, 255, 0.08);
+  --line: rgba(255, 255, 255, 0.1);
+  --glow-iris: rgba(112, 66, 248, 0.5);
+  --glow-aqua: rgba(0, 216, 255, 0.45);
+}
+
+* { box-sizing: border-box; }
+
+/* Lenis controls scrolling — keep native behavior off. */
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--base);
+  color: var(--ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--iris); color: #fff; }
+
+/* Purple → cyan gradient text */
+.text-grad {
+  background: linear-gradient(100deg, var(--iris-soft), var(--aqua));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glass primitive */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+/* Grain overlay */
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  animation: grain 8s steps(6) infinite;
+}
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-3%, 2%); }
+  50% { transform: translate(2%, -3%); }
+  75% { transform: translate(3%, 3%); }
+}
+
+/* Infinite marquee (skills) */
+@keyframes marqueeLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes marqueeRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.marquee-left { animation: marqueeLeft 30s linear infinite; }
+.marquee-right { animation: marqueeRight 30s linear infinite; }
+.marquee-paused:hover .marquee-left,
+.marquee-paused:hover .marquee-right { animation-play-state: paused; }
+
+/* ---- Lenis smooth scroll ---- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* Custom cursor — hide native on precise pointers */
+@media (hover: hover) and (pointer: fine) {
+  body.cursor-ready,
+  body.cursor-ready a,
+  body.cursor-ready button {
+    cursor: none;
+  }
+}
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--aqua);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--iris), var(--aqua));
+  border-radius: 100px;
+  border: 2px solid #0a0a0a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

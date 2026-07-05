@@ -1,10 +1,26 @@
-# Dependencies (none required, but just in case)
-node_modules/
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-# Vercel
-.vercel/
+# next.js
+/.next/
+/out/
+/build
 
-# OS / editor cruft
+# misc
 .DS_Store
 Thumbs.db
+*.pem
 *.log
+npm-debug.log*
+
+# env
+.env*
+!.env.example
+
+# typescript
+next-env.d.ts
+
+# vercel
+.vercel

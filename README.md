@@ -1,65 +1,68 @@
-# Shri Ganapathi V.R — Full Stack Developer Portfolio
+# Shri Ganapathi V.R — Portfolio
 
-A visually rich, single-page developer portfolio built with **Three.js** and a
-dark neon aesthetic. Zero build step — plain HTML/CSS + ES-module JavaScript that
-pulls Three.js from a CDN, so it deploys to Vercel/Netlify instantly.
+A premium, cinematic developer portfolio built with **Next.js (App Router)**,
+**Tailwind CSS**, **Framer Motion**, **Three.js / React Three Fiber**, and
+**Lucide** icons. Fully static — exports to plain HTML and deploys to
+Netlify/Vercel with no server.
 
-## Highlights
+## Design
 
-- **Hero** — a real WebGL **particle galaxy** (spiral, ~22k points, additive glow)
-  with a floating star field and mouse-parallax camera, name/title centered, plus
-  "View My Work" and "Hire Me on Upwork" buttons.
-- **Skills** — a **draggable 3D sphere** of neon skill badges (Three.js sprites on a
-  fibonacci sphere) that auto-rotates and responds to drag/touch.
-- **Projects** — glassmorphic cards with **3D pointer-tilt** and a glow that tracks
-  the cursor; live + GitHub buttons and tech-stack tags.
-- **Cursor glow** that trails the mouse, **blur navigation** bar, scroll-reveal
-  animations, scroll-spy nav, magnetic buttons, and a full-screen mobile menu.
-- Dark theme `#0a0a0a` with neon **blue `#00d4ff`** + **purple `#7b2fff`** accents.
-- Fully responsive (mobile-first) and respects `prefers-reduced-motion`. Gracefully
-  falls back to a static skills list if WebGL is unavailable.
+- Full dark theme `#0a0a0a` with electric-green neon `#00ff88` (primary) and a
+  purple `#a855f7` secondary accent (custom cursor + project hover glow).
+- Glassmorphism cards, animated grain overlay, **Syne** headings + **Inter** body.
+- Custom cursor (purple dot + spring-trailed ring), 2s intro loader, parallax
+  canvas starfield, infinite skill marquee, and an interactive R3F 3D skill globe.
+- Every section animates in on scroll (Framer Motion `whileInView` + staggered
+  children). Respects `prefers-reduced-motion`.
 
-## Type pairing
+## Tech stack
 
-[Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) (display) +
-[Outfit](https://fonts.google.com/specimen/Outfit) (body).
+| Area | Tool |
+|------|------|
+| Framework | Next.js 14 (App Router, `output: 'export'`) |
+| Styling | Tailwind CSS |
+| Animation | Framer Motion + GSAP (available) |
+| 3D | Three.js · @react-three/fiber · @react-three/drei |
+| Icons | lucide-react |
+| Language | TypeScript |
 
 ## Project structure
 
 ```
-.
-├── index.html      # markup, content, Three.js importmap
-├── styles.css      # dark/neon theme + all styling & animations
-├── main.js         # Three.js scenes (galaxy, skills sphere) + UI interactions
-├── serve.js        # tiny zero-dependency local preview server (dev only)
-├── vercel.json     # static deploy config + security headers
-└── README.md
+app/
+  layout.tsx        # fonts, metadata, global Loader + CustomCursor
+  page.tsx          # section composition
+  globals.css       # design tokens, glass, grain, marquee, cursor
+components/
+  Navbar, Hero, About, Projects, Skills, SkillGlobe, Contact, Footer
+  Loader, CustomCursor, Button, SectionTitle, Starfield
+lib/
+  anim.ts           # shared Framer Motion variants
+  fonts.ts          # next/font (Syne, Inter)
+legacy/             # previous vanilla HTML/CSS/JS site (archived)
 ```
 
 ## Run locally
 
-It's a static site, but ES modules need to be served over HTTP (not `file://`).
+```bash
+npm install
+npm run dev          # http://localhost:3000
+```
+
+## Build & preview the static export
 
 ```bash
-# Node (uses the included tiny server — no dependencies)
-node serve.js
-# then visit http://localhost:5173
-
-# …or any static server you like, e.g.
-npx serve .
+npm run build        # outputs static site to ./out
+npm run preview      # serves ./out locally
 ```
 
 ## Deploy
 
-### Vercel
-1. Push to a GitHub repo.
-2. [vercel.com/new](https://vercel.com/new) → **Import** the repo.
-3. Framework preset: **Other**, build command empty, output directory `./`.
-4. **Deploy.** No build required.
+**Netlify** — Build command `npm run build`, publish directory `out`.
+(Or drag-and-drop the `out/` folder at app.netlify.com/drop.)
 
-### Netlify
-Drag-and-drop the folder at [app.netlify.com/drop](https://app.netlify.com/drop),
-or connect the repo with build command empty and publish directory `./`.
+**Vercel** — Import the repo; Next.js is detected automatically. The
+`output: 'export'` config produces a static deployment.
 
 ## Contact
 
