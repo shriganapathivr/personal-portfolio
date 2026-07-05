@@ -1,0 +1,7 @@
+# Static export (next.config.mjs → output: "export") lands in ./out
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20"
